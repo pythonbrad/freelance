@@ -1,0 +1,21 @@
+{% extends 'core/base.html' %}
+{% block 'body' %}
+<section class="article-dual-column">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 offset-md-1">
+                <div class="intro">
+                    <h1 class="text-center">{{ microservice.name }}</h1>
+                    <p class="text-center"><span class="by">Seller by</span> <a href="#">{{ microservice }}</a></p>
+                    <img class="img-fluid" src="{{ microservice.illustration_set.last.media.url }}">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="text">
+                {{ microservice.description }}
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

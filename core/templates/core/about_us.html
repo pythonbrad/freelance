@@ -1,0 +1,26 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block 'body' %}
+<section class="team-clean">
+    <div class="container">
+        <div class="intro">
+            <h2 class="text-center">Team </h2>
+            <p class="text-center">Nunc luctus in metus eget fringilla. Aliquam sed justo ligula. Vestibulum nibh erat, pellentesque ut laoreet vitae. </p>
+        </div>
+        <div class="row people">
+            <div class="col-md-6 col-lg item"><img class="rounded-circle" src="{% static 'assets/img/1.jpg' %}">
+                <h3 class="name">Brady Fomegne</h3>
+                <p class="title">Software Engineer</p>
+                <p class="description">A student of FET (Faculty of Engineering and Technology of Buea)</p>
+                <div class="social"><a href="#"><i class="fa fa-facebook-official"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-instagram"></i></a></div>
+            </div>
+            <div class="col-md-6 col-lg item"><img class="rounded-circle" src="{% static 'assets/img/2.jpg' %}">
+                <h3 class="name">Franck Kammoe</h3>
+                <p class="title">Accounting</p>
+                <p class="description">A student of ISSAM (Institut Superieur de Science d'Administration et de Management)</p>
+                <div class="social"><a href="#"><i class="fa fa-facebook-official"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-instagram"></i></a></div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

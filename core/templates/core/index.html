@@ -1,1 +1,60 @@
 {% extends 'core/base.html' %}
+{% block 'body' %}
+<section class="text-center bg-light features-icons">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="mx-auto features-icons-item mb-5 mb-lg-0 mb-lg-3">
+                    <div class="d-flex features-icons-icon"><i class="fas fa-shopping-cart m-auto text-primary" data-bss-hover-animate="pulse"></i></div>
+                    <h3>Command</h3>
+                    <p class="lead mb-0">Command the microservice of your choice between one of our sellers</p>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="mx-auto features-icons-item mb-5 mb-lg-0 mb-lg-3">
+                    <div class="d-flex features-icons-icon"><i class="far fa-comments m-auto text-primary" data-bss-hover-animate="pulse"></i></div>
+                    <h3>Exchange</h3>
+                    <p class="lead mb-0">Talk via the chat on the website until the shipping in all security.</p>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="mx-auto features-icons-item mb-5 mb-lg-0 mb-lg-3">
+                    <div class="d-flex features-icons-icon"><i class="fas fa-money-check-alt m-auto text-primary" data-bss-hover-animate="pulse"></i></div>
+                    <h3>Payment</h3>
+                    <p class="lead mb-0">The seller receive the money only if the shipping is valided</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="features-boxed">
+    <div class="container">
+        <div class="intro">
+            <h2 class="text-center">Microservices</h2>
+            <p class="text-center">Choose one of the microservices of our sellers</p>
+        </div>
+        <div class="row justify-content-center features">
+            {% for microservice in microservices %}
+            <div class="col-sm-6 col-md-5 col-lg-4 item">
+                <div class="box">
+                    <span class="icon">
+                        <img src="{{ microservice.illustration_set.last.media.url }}">
+                    </span>
+                    <h3 class="name">{{ microservice.name }}</h3>
+                    <p class="description">{{ microservice.seller }}</p><a class="learn-more" href="{% url 'details' microservice.pk %}">Learn more »</a>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-sm-6 col-md-5 col-lg-4 item">
+                <h3 class="name">No microservice for the moment</h3>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="row">
+            <div class="col" style="text-align: center;">
+                <div class="btn-group" role="group"></div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
