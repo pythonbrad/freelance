@@ -17,7 +17,7 @@ def signin(request):
 			return redirect('login')
 	else:
 		forms = SigninForm()
-	return render(request, 'core/signin.html', {'forms': forms})
+	return render(request, 'core/signin.html', {'forms': forms, 'title': 'Signin'})
 
 def login(request):
 	if request.user.is_authenticated:
@@ -30,19 +30,19 @@ def login(request):
 			return redirect('home')
 	else:
 		forms = LoginForm()
-	return render(request, 'core/login.html', {'forms': forms})
+	return render(request, 'core/login.html', {'forms': forms, 'title': 'Login'})
 
 def logout(request):
     if request.user.is_authenticated:
         auth.logout(request)
-    return redirect('home')
+    return redirect('home', {'title': "Home"})
 
 
 def details(request, pk):
 	return render(request, 'core/details.html')
 
 def about(request):
-	return render(request, 'core/about_us.html')
+	return render(request, 'core/about_us.html', {'title': 'About'})
 
 def become_seller(self):
 	if request.user.is_authenticated:

@@ -27,15 +27,23 @@
 
 <body>
     <nav class="navbar navbar-light navbar-expand-md navigation-clean-search">
-        <div class="container"><a class="navbar-brand" href="{% url 'home' %}">2kolos.com</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div class="container"><a class="navbar-brand fa fa-2x" href="{% url 'home' %}">2kolos.com</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navcol-1">
                 <form class="form-inline mr-auto" target="_self" action="{% url 'home' %}">
-                    <div class="form-group"><label for="search-field"><i class="fa fa-search"></i></label><input class="form-control search-field" type="search" id="search-field" name="search"></div>
+                    <div class="form-group"><label for="search-field"><i class="fa fa-search"></i></label><input class="form-control search-field" type="search" id="search-field" name="search" placeholder="Find a microservice"></div>
                 </form>
                 <ul class="navbar-nav">
                     <li class="nav-item"><a class="nav-link" href="#">Buyer</a></li>
                     <li class="nav-item"><a class="nav-link" href="#">Seller</a></li>
-                    {% if not request.user.is_authenticated %}
+                    {% if request.user.is_authenticated %}
+                        <li class="nav-item"><a class="nav-link" href="#"><i class="fa fa-bell fa-2x"></i></a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">
+                            <span class="fa-stack">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fas fa-stack-1x fa-inverse">{{ request.user.last_name.capitalize|first }}</i>
+                            </span>
+                        </a></li>
+                    {% else %}
 	                    <li class="nav-item"><a class="btn btn-light action-button" role="button" href="{% url 'signin' %}">Sign Up</a></li>
 	                    &nbsp;
 	                    <li class="nav-item"><a class="btn btn-light action-button" role="button" href="{% url 'login' %}">Log in</a></li>
