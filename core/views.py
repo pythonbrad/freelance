@@ -13,6 +13,7 @@ def signin(request):
 	elif request.POST:
 		forms = SigninForm(request.POST)
 		if forms.is_valid():
+			forms.instance.username = forms.instance.email
 			forms.save()
 			return redirect('login')
 	else:
@@ -44,8 +45,8 @@ def details(request, pk):
 def about(request):
 	return render(request, 'core/about_us.html', {'title': 'About'})
 
-def become_seller(self):
+def become_seller(request):
 	if request.user.is_authenticated:
-		pass
+		return render(request, 'core/become_seller.html', {'title': 'Become a seller'})
 	else:
 		return redirect('signin')

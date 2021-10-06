@@ -33,8 +33,8 @@
                     <div class="form-group"><label for="search-field"><i class="fa fa-search"></i></label><input class="form-control search-field" type="search" id="search-field" name="search" placeholder="Find a microservice"></div>
                 </form>
                 <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link" href="#">Buyer</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Seller</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Buy</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'become_seller' %}">Sell</a></li>
                     {% if request.user.is_authenticated %}
                         <li class="nav-item"><a class="nav-link" href="#"><i class="fa fa-bell fa-2x"></i></a></li>
                         <li class="nav-item"><a class="nav-link" href="#">
