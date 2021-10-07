@@ -1,12 +1,23 @@
 {% extends 'core/base.html' %}
+{% load static %}
 {% block 'body' %}
 <br>
 <br>
 <br>
+<style type="text/css">
+.bsbg {
+      background-image: url('{% static "assets/img/Blog62_Header.png" %}');
+      height: 50vh;
+}
+</style>
 <div class="container">
-	<div class="text-center">
-		<h3>Propose your talents to new customers!</h3>
-		<button class="btn btn-dark">Start to sell</button>
+	<div class="card bg-image bsbg">
+		<div class="card-body">
+			<span class="card-title fa fa-2x fa-inverse">Propose your talents to new customers !</span>
+		</div>
+		<div class="card-footer">
+			<button class="btn btn-dark">Start to sell</button>
+		</div>
 	</div>
 	<br>
 	<br>
@@ -16,8 +27,41 @@
 		<br>
 		<br>
 		<br>
-		<span class="fa fa-2x">First community of microservices in Cameroon, 2kolos is a online platform, make for you.</span>
+		<span class="fa fa-2x">First community of micro-services in Cameroon, 2kolos is a online platform, make for you.</span>
 	</div>
 	<br>
+	<div class="text-center">
+		<span class="fa fa-2x"><b>How it work ?</b></span>
+		<br>
+		<br>
+		<div><i class="fa fa-4x fa-tasks"></i>
+		  <div>
+		    <p><b>1. Fill your profile and create your micro-finance</b></p>
+		    <p>Present you, after present your skills. Your micro-service is your quotation, and once valided by our team, your customers have just to command for 2kolos or more.</p>
+		  </div>
+		</div>
+		<div><i class="fa fa-4x fa-shopping-bag"></i>
+		  <div>
+		    <p><b>2. Sell and satisfy customers</b></p>
+		    <p>You will receive a notification each new commands. You should do a good work to receive positives remarks.</p>
+		  </div>
+		</div>
+		<div><i class="fa fa-4x fa-money-bill"></i>
+		  <div>
+		    <p><b>3. Receive your money</b></p>
+		    <p>Once your command finished, your bill is automatically edited and your money is disponible. You can drop it when you want.</p>
+		  </div>
+		</div>
+	</div>
+	<br>
+	<div>
+		<span class="fa fa-2x text-center"><b>Why choose 2kolos.com</b></span>
+		<p></p>
+		<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sell freely</p>
+		<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The commission at 10% only</p>
+		<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cash out your money without condition</p>
+		<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;You stay independent and sell when you want</p>
+		<button class="btn btn-dark">I am OK !</button>
+	</div>
 </div>
 {% endblock %}
