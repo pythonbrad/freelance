@@ -9,5 +9,7 @@ urlpatterns = [
     path('about', views.about, name='about'),
     path('details/<int:pk>', views.details, name='details'),
     path('become-seller', views.become_seller, name='become_seller'),
+    path('seller-account', views.seller_account, name='seller_account'),
+    path('buyer-account', views.buyer_account, name='buyer_account'),
     path('<str:tag>', views.index, name='home'),
 ]

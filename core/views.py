@@ -50,3 +50,15 @@ def become_seller(request):
 		return render(request, 'core/become_seller.html', {'title': 'Become a seller'})
 	else:
 		return redirect('signin')
+
+def buyer_account(request):
+	if request.user.is_authenticated:
+		return render(request, 'core/buyer_account.html', {'title': 'My buyer account'})
+	else:
+		return redirect('signin')
+
+def seller_account(request):
+	if request.user.is_authenticated:
+		return render(request, 'core/seller_account.html', {'title': 'My seller account'})
+	else:
+		return redirect('signin')
