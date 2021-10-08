@@ -14,6 +14,7 @@ def signin(request):
 		forms = SigninForm(request.POST)
 		if forms.is_valid():
 			forms.instance.username = forms.instance.email
+			forms.save()
 			forms.instance.buyer = Buyer.objects.create(user=forms.instance)
 			forms.save()
 			return redirect('login')
