@@ -15,8 +15,6 @@ def signin(request):
 		if forms.is_valid():
 			forms.instance.username = forms.instance.email
 			forms.save()
-			forms.instance.buyer = Buyer.objects.create(user=forms.instance)
-			forms.save()
 			return redirect('login')
 	else:
 		forms = SigninForm()
@@ -30,6 +28,10 @@ def login(request):
 		if forms.is_valid():
 			user = forms.get_user()
 			auth.login(request, user)
+			if not hasattr(request.user, 'buyer'):
+				Buyer.objects.create(user=request.user)
+			else:
+				pass
 			return redirect('home')
 	else:
 		forms = LoginForm()
