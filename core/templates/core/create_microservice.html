@@ -1,0 +1,16 @@
+{% extends 'core/base.html' %}
+{% block 'body' %}
+<section class="container">
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <h2 class="text-center">Create Microservice</h2>
+        <br>
+        {% for form in forms %}
+            <div class="help text-danger">{{ form.errors }}</div>
+            <label>{{form.label}}:</label>
+            <div class="form-group">{{ form }}</div>
+        {% endfor %}
+        <div class="form-group"><button class="btn btn-primary btn-block" type="submit">Create</button></div>
+    </form>
+</section>
+{% endblock %}

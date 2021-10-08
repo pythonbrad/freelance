@@ -1,6 +1,6 @@
-from django.shortcuts import render, reverse, redirect
-from .models import Microservice
-from .forms import SigninForm, LoginForm
+from django.shortcuts import render, reverse, redirect, get_object_or_404
+from .models import Microservice, Buyer, Seller
+from .forms import SigninForm, LoginForm, MicroserviceForm
 from django.contrib import auth
 
 # Create your views here.
@@ -14,6 +14,7 @@ def signin(request):
 		forms = SigninForm(request.POST)
 		if forms.is_valid():
 			forms.instance.username = forms.instance.email
+			forms.instance.buyer = Buyer.objects.create(user=request.user)
 			forms.save()
 			return redirect('login')
 	else:
@@ -36,18 +37,21 @@ def login(request):
 def logout(request):
     if request.user.is_authenticated:
         auth.logout(request)
-    return redirect('home', {'title': "Home"})
 
 
 def details(request, pk):
-	return render(request, 'core/details.html')
+	microservice = get_object_or_404(Microservice, pk=pk)
+	return render(request, 'core/details.html', {'title': microservice.name, 'microservice': microservice})
 
 def about(request):
 	return render(request, 'core/about_us.html', {'title': 'About'})
 
 def become_seller(request):
 	if request.user.is_authenticated:
-		return render(request, 'core/become_seller.html', {'title': 'Become a seller'})
+		if hasattr(request.user, 'seller'):
+			return redirect('seller_account')
+		else:
+			return render(request, 'core/become_seller.html', {'title': 'Become a seller'})
 	else:
 		return redirect('signin')
 
@@ -60,5 +64,24 @@ def buyer_account(request):
 def seller_account(request):
 	if request.user.is_authenticated:
 		return render(request, 'core/seller_account.html', {'title': 'My seller account'})
+	else:
+		return redirect('signin')
+
+def create_microservice(request):
+	if request.user.is_authenticated:
+		if request.POST:
+			forms = MicroserviceForm(request.POST, request.FILES)
+			if forms.is_valid():
+				if hasattr(request.user, 'seller'):
+					seller = request.user.seller
+				else:
+					seller = Seller.objects.create(user=request.user) 
+				forms.instance.seller = seller
+				forms.save()
+				forms.instance.illustration_set.create(media=forms.cleaned_data['media'], microservice=forms.instance)
+				return redirect('seller_account')
+		else:
+			forms = MicroserviceForm()
+		return render(request, 'core/create_microservice.html', {'title': 'Create microservice', 'forms': forms})
 	else:
 		return redirect('signin')

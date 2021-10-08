@@ -37,8 +37,8 @@
             {% for microservice in microservices %}
             <div class="col-sm-6 col-md-5 col-lg-4 item">
                 <div class="box">
-                    <span class="icon">
-                        <img src="{{ microservice.illustration_set.last.media.url }}">
+                    <span>
+                        <img class="img-fluid" src="{{ microservice.illustration_set.last.media.url }}" height="100%" width="100%">
                     </span>
                     <h3 class="name">{{ microservice.name }}</h3>
                     <p class="description">{{ microservice.seller }}</p><a class="learn-more" href="{% url 'details' microservice.pk %}">Learn more »</a>

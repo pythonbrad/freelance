@@ -1,5 +1,5 @@
 from django import forms
-from .models import User
+from .models import User, Microservice
 
 
 class SigninForm(forms.ModelForm):
@@ -47,3 +47,19 @@ class LoginForm(forms.ModelForm):
 
 	def get_user(self):
 		return self.user[0]
+
+class MicroserviceForm(forms.ModelForm):
+	class Meta:
+		model = Microservice
+		fields = ['name', 'description', 'price', 'delay', '_type']
+
+	media = forms.ImageField()
+
+	def __init__(self, *args, **kwargs):
+		super().__init__(*args, **kwargs)
+		self.fields['name'].widget.attrs.update({'class': 'form-control'})
+		self.fields['description'].widget.attrs.update({'class': 'form-control'})
+		self.fields['price'].widget.attrs.update({'class': 'form-control'})
+		self.fields['delay'].widget.attrs.update({'class': 'form-control'})
+		self.fields['_type'].widget.attrs.update({'class': 'form-control'})
+		self.fields['media'].widget.attrs.update({'class': 'form-control'})

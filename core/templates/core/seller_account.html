@@ -1,0 +1,52 @@
+{% extends 'core/base.html' %}
+{% block 'body' %}
+<br>
+<br>
+<br>
+<div class="container">
+	<div class="card">
+		<div class="card-header" style="background-color: black;">
+			<div class="row">
+				<div class="col">
+					<span class="card-title fa fa-inverse"><b>Micro-services</b></span>
+				</div>
+				<div>
+					<a href="{% url 'create_microservice' %}"><button class="btn btn-primary">New micro-service</button></a>
+				</div>
+			</div>
+		</div>
+		<div class="card-body">
+			{% for microservice in request.user.seller.microservice_set.all %}
+				<div class="card">
+					<div class="card-header text-center">
+						<div class="card-image">
+							<img src="{{ microservice.illustration_set.last.media.url }}" width="50%" height="50%">
+						</div>
+					</div>
+					<div class="card-body">
+						<div class="card-title text-center">
+							<b>{{ microservice.name }}</b>
+						</div>
+						<div class="text-center">
+							{{ microservice.description }}
+						</div>
+					</div>
+					<div class="card-footer">
+						<div class="row">
+							<div class="col">Price: {{ microservice.price }}</div>
+							<div class="col">Packages: {{ microservice.packages.count }}</div>
+							<div class="col">Sell: {{ microservice.command_set.count }}</div>
+						</div>
+					</div>
+				</div>
+				<br>
+			{% empty %}
+				<div class="card-title">
+					<span>You have not yet a microservice</span>
+				</div>
+				<a href="{% url 'create_microservice' %}"><button class="btn btn-primary">Create a micro-service</button></a>
+			{% endfor %}
+		</div>
+	</div>
+</div>
+{% endblock%}
